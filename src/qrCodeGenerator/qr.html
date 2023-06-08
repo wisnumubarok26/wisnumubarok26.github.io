@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>QrCode</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;1,100;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <p>Enter url atau teks disini...</p>
+        <input type="text" placeholder="Text atau url" id="inputText">
+        <div class="imgBox" id="imgBox">
+            <img src="" alt="" id="imgCode">
+        </div>
+        <button type="submit" onclick="generatorCode()" class="submit-btn">Generate</button>
+        <button id="try-btn" onclick="ulangiCode()">Ulangi</button>
+    </div>
+
+    <script>
+        let imgbox= document.getElementById("imgBox");
+        let imgCode = document.getElementById("imgCode");
+        let text = document.getElementById("inputText");
+
+        generatorCode = function(){
+            if(text.value.length> 0){
+                imgCode.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+ text.value;
+                imgbox.classList.add("show");
+            }
+           
+        }
+        ulangiCode = function(){
+            imgbox.classList.remove("show");
+            text.setAttribute("placeholder"," Ulangi di sini")
+        }
+    </script>
+</body>
+</html>
